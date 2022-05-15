@@ -13,9 +13,9 @@ $server_name ='localhost';
 $user_name='root';
 $password='';
 $db= 'animal';
-$cheackconnection=mysqli_connect($server_name ,$user_name,$password,$db);
+$connect=mysqli_connect($server_name ,$user_name,$password,$db);
 
-if ($cheackconnection){
+if ($connect){
 echo "sucsess connection";
 }
 else 
