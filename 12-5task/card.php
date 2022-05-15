@@ -81,7 +81,7 @@ for ($i=0; $i < count($_SESSION['pro']); $i++) {
 <div class="container">
  <div class="card">
     <div class="card-body">
-    <div><img src= " '. $p[2] .'"class="grid-item" > </div>
+    <div><img src= "image/'. $p[2] .'"class="grid-item" > </div>
       <h4 class="card-title">'.$p[0].'</h4>
       <p class="card-text"><div  "class="grid-item"><h3 >'.$p[1].'<h3></div>
       <div  "class="grid-item"><h3 >'.$p[3].'<h3></div>

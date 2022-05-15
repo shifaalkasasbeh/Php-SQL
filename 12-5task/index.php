@@ -73,7 +73,7 @@ th {
       </nav>
     </div>
 
-    <form action="index.php" method="post">
+    <form action="index.php" method="post" enctype="multipart/form-data" >
       
  <fieldset>
   <legend>product information</legend>
@@ -83,7 +83,9 @@ th {
 
   <label for="prodsize"> product size: </label> <input type="text" name="prodsize"><br><br>
   <label for="productprice"> product price: </label> <input type="text" name="productprice"><br><br>
-  <button type ="submit" >submit</button>
+
+  <label for="pic"> product image: </label> <input type="text" name="productimage"><br><br>
+  <button type ="file" >submit</button>
  
 <br>
 
@@ -105,13 +107,17 @@ if(!empty($_POST['proname'])){
     if(!empty($_POST['prodes'])){
         if(!empty($_POST['prodsize'])){
             if(!empty($_POST['productprice'])){
-$img_url = "https://m.media-amazon.com/images/I/4154HhMt46S.jpg  ";
+                if(!isset( $_SESSION['productimage'])){
+              move_uploaded_file($_FILES['productimage']['tamp_name'],'image/'.$_FILES ['productimage']['name'])      
+                }
+//$img_url = "https://m.media-amazon.com/images/I/4154HhMt46S.jpg  ";
     if(!isset( $_SESSION['pro'])){
     $_SESSION['pro'] = array() ;
     }
     array_push( $pro , $_POST['proname']);
     array_push( $pro , $_POST['prodes']);
-    array_push( $pro ,$img_url );
+    //array_push( $pro ,$img_url );
+    array_push( $pro , $_FILES['productimage']['name']);
     array_push( $pro , $_POST['prodsize']);
     array_push( $pro , $_POST['productprice']);
 
@@ -145,11 +151,12 @@ for ($i=0; $i < count($_SESSION['pro']); $i++) {
 
 
 <tr>
-<th scope="row"><img src= " '. $p[2] .'"class="grid-item" ></th>
+<th scope="row"><img src= "image/'. $p[2] .'"class="grid-item" ></th>
 <td "class="grid-item"><h2>'.$p[0].'<h2></td>
 <td "class="grid-item"><h3 >'.$p[1].'<h3></td>
 <td "class="grid-item"><h3 >'.$p[3].'<h3></td>
 <td "class="grid-item"><h3 >'.$p[4].'<h3></td>
+
 
 </div>    
  </tr>
