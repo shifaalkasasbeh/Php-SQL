@@ -84,8 +84,8 @@ th {
   <label for="prodsize"> product size: </label> <input type="text" name="prodsize"><br><br>
   <label for="productprice"> product price: </label> <input type="text" name="productprice"><br><br>
 
-  <label for="pic"> product image: </label> <input type="text" name="productimage"><br><br>
-  <button type ="file" >submit</button>
+  <label for="pic"> product image: </label> <input  type ="file" name="productimage"><br><br>
+  <button >submit</button>
  
 <br>
 
@@ -108,7 +108,7 @@ if(!empty($_POST['proname'])){
         if(!empty($_POST['prodsize'])){
             if(!empty($_POST['productprice'])){
                 if(!isset( $_SESSION['productimage'])){
-              move_uploaded_file($_FILES['productimage']['tamp_name'],'image/'.$_FILES ['productimage']['name'])      
+              move_uploaded_file($_FILES['productimage']['tmp_name'],'image/'.$_FILES ['productimage']['name'])  ;   
                 }
 //$img_url = "https://m.media-amazon.com/images/I/4154HhMt46S.jpg  ";
     if(!isset( $_SESSION['pro'])){
