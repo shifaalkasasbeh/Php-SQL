@@ -1,7 +1,7 @@
 <?php
     require 'connect.php';
 
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM animalinformation";
 
     $stat = $connect->query($sql);
     $row = $stat->fetchall();
@@ -17,23 +17,29 @@
     <title>Form</title>
 </head>
 <body>
-    <form action="show.php" method="post" style="width: 50% ; margin:auto ; padding-top:100px">
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Product Name</label>
-          <input type="text" class="form-control" name="name">
-        </div>
+ 
+<form action="index.php" method="post">
+        <label>name: </label>
+        <input name="name"><br>
+        <label>age: </label>
+        <input name="age" ><br>
 
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Price</label>
-            <input type="number" step=".1" min="0" class="form-control" name="price">
-        </div>
+        <label>animal describtion: </label>
+        <input name="animalde" ><br>
+
+        <label>size: </label>
+        <input name="size"><br>
+        <label>color: </label>
+        <input name="color" ><br>
         
+
+
         <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Categories</label>
             <select class="form-select" name = "category">
-                <option selected disabled>Choose A Category </option>
+                <option selected disabled>1</option>
                 <?php for($i=0 ; $i<count($row) ; $i++){ ?>
-                <option value="<?php echo $row[$i]["categories_id"] ?>"><?php echo $row[$i]["categories_name"] ?></option>
+                <option value="<?php echo $row[$i]["id"] ?>"><?php echo $row[$i]["name"] ?></option>
 
                 <?php }?>
 
@@ -41,9 +47,26 @@
             </select>
 
         </div>
-
-        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        <button> add animal</button>
       </form>
+      
+<?php
+$animalname = $_POST['name'];
+$animalage = $_POST['age'];
+$animaldescribtion = $_POST['animalde'];
+$animalsize = $_POST['size'];
+$animalcolor = $_POST['color'];
+
+ echo '<br>'."Hi".$animalname .'<br>';
+
+$query = $connect->prepare("INSERT INTO animalinformation (name,age, animalde ,size,color)
+VALUES(:name,:age,:describtion,:size,:color)") ;
+
+$query -> execute(['name'=>$animalname, 'age'=>$animalage ,'describtion'=>$animaldescribtion ,'size'=> $animalsize ,'color'=>$animalcolor ])
+
+?>
+
+
 
 </body>
 </html>   
